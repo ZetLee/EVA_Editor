@@ -1,0 +1,46 @@
+﻿<Window x:Class="Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Editor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DockPanel LastChildFill="False">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="file" HorizontalAlignment="Left">
+                    <MenuItem Header="New"/>
+                    <MenuItem Header="Open" Command="{Binding Load}"/>
+                    <MenuItem Header="Save" Command="{Binding Save}"/>
+                    <MenuItem Header="Close"/>
+                </MenuItem>
+                <MenuItem Header="view" HorizontalAlignment="Left">
+                    <MenuItem Header="Increase FS" Command="{Binding IncreaseFont}"/>
+                    <MenuItem Header="Decrease FS" Command="{Binding DecreaseFont}"/>
+                </MenuItem>
+            </Menu>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Button Content="New"/>
+                    <Button Content="Open" Command="{Binding Load}"/>
+                    <Button Content="Save" Command="{Binding Save}"/>
+                    <Button Content="Colse"/>
+
+                </ToolBar>
+                <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Button Content="Increase font size" Command="{Binding IncreaseFont}"/>
+                    <Button Content="Decrease font size" Command="{Binding DecreaseFont}"/>
+                    <RadioButton IsChecked="{Binding IsDirty}" IsEnabled="False" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Center"  />
+                </ToolBar>
+            </ToolBarTray>
+            <ScrollViewer DockPanel.Dock="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="300">
+                <DockPanel>
+                    <TextBox DockPanel.Dock="Left" FontFamily="Modern" TextAlignment="Right" Text="{Binding LineNumbers}" FontSize="{Binding FontSize}" Background="LightGray" IsReadOnly="True" Foreground="#FFFF3C3C"  />
+                    <TextBox DockPanel.Dock="Left" FontFamily="Modern" AcceptsReturn="True" AcceptsTab="True" Text="{Binding CurrentText, UpdateSourceTrigger=PropertyChanged}" FontSize="{Binding FontSize}"/>
+                </DockPanel>
+            </ScrollViewer>
+        </DockPanel>
+
+    </Grid>
+</Window>
